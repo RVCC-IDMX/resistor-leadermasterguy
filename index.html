@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="favicon.png" type="image/png">
+  <script defer src="index.js"></script>
   <title>Resistor Calculator</title>
 
   <style>
@@ -217,7 +218,7 @@
     <div class="selection">
       <section class="container">
         <h2>Band 1</h2>
-        <div id="color0" class="bands">
+        <div id="color0" class="bands" data-first-band>
           <div class="box black">black</div>
           <div class="box brown">brown</div>
           <div class="box red">red</div>
@@ -232,7 +233,7 @@
       </section>
       <section class="container">
         <h2>Band 2</h2>
-        <div id="color1" class="bands">
+        <div id="color1" class="bands" data-second-band>
           <div class="box black">black</div>
           <div class="box brown">brown</div>
           <div class="box red">red</div>
@@ -247,7 +248,7 @@
       </section>
       <section class="container">
         <h2>Multiplier</h2>
-        <div id="color2" class="bands">
+        <div id="color2" class="bands" data-multiplier>
           <div class="box black">black</div>
           <div class="box brown">brown</div>
           <div class="box red">red</div>
@@ -264,7 +265,7 @@
       </section>
       <section class="container">
         <h2>Tolerance</h2>
-        <div id="color3" class="bands">
+        <div id="color3" class="bands" data-resistence>
           <div class="box brown">brown</div>
           <div class="box red">red</div>
           <div class="box green">green</div>
@@ -280,10 +281,10 @@
       <div class="resistor">
         <div class="wire wire--1"></div>
         <div class="ceramic">
-          <div id="b0" class="band red"></div>
-          <div id="b1" class="band green"></div>
-          <div id="b2" class="band violet"></div>
-          <div id="b3" class="band gold"></div>
+          <div id="b0" class="band red" data-display-first-band></div>
+          <div id="b1" class="band green" data-display-second-band></div>
+          <div id="b2" class="band violet" data-display-multiplier-band></div>
+          <div id="b3" class="band gold" data-display-resistance-band></div>
         </div>
         <div class="wire wire--2"></div>
       </div>
