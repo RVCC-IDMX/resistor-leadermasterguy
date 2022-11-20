@@ -215,10 +215,10 @@
 <body>
   <h1>Resistor Calculator Ω</h1>
   <div class="calculator">
-    <div class="selection">
+    <div class="selection" data-container>
       <section class="container">
         <h2>Band 1</h2>
-        <div id="color0" class="bands" data-first-band>
+        <div id="color0" class="bands" data-first-band data-band="1">
           <div class="box black">black</div>
           <div class="box brown">brown</div>
           <div class="box red">red</div>
@@ -233,7 +233,7 @@
       </section>
       <section class="container">
         <h2>Band 2</h2>
-        <div id="color1" class="bands" data-second-band>
+        <div id="color1" class="bands" data-second-band data-band="2">
           <div class="box black">black</div>
           <div class="box brown">brown</div>
           <div class="box red">red</div>
@@ -248,7 +248,7 @@
       </section>
       <section class="container">
         <h2>Multiplier</h2>
-        <div id="color2" class="bands" data-multiplier-band>
+        <div id="color2" class="bands" data-multiplier-band data-band="3">
           <div class="box black">black</div>
           <div class="box brown">brown</div>
           <div class="box red">red</div>
@@ -265,7 +265,7 @@
       </section>
       <section class="container">
         <h2>Tolerance</h2>
-        <div id="color3" class="bands" data-resistance-band>
+        <div id="color3" class="bands" data-resistance-band data-band="4">
           <div class="box brown">brown</div>
           <div class="box red">red</div>
           <div class="box green">green</div>
