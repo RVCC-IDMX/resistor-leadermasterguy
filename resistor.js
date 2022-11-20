@@ -42,8 +42,6 @@
   };
  */
 
-const getResistorOhms = (bands) => {};
-
 /**
  * Returns the digit as a number from the resistor color code
  * @param {string} color - the
