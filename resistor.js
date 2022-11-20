@@ -4,13 +4,12 @@
   electronic resistors have colored bands where each color represents a numerical number
   Electrical engineers can read the colors and
   determine the resistance value in Ohms
-
   see this resistor calculator for help
    http://bit.ly/2NjS274
 */
 
 /**
-  Lookup Table for the color codes for the first 2 bands, each color represents
+  Here's a Lookup Table for the color codes for the first 2 bands, each color represents
   a digit from 0 to 9.
     const colorCodes = {
      black: 0,
@@ -24,7 +23,7 @@
      grey: 8,
      white: 9,
   };
-    Lookup Table for the Multipliers. Each color represents a the multiplication factor
+    Here's a Lookup Table for the Multipliers. Each color represents a the multiplication factor
     that is used with the value from the first 2 bands.
     const multiplierCodes = {
      black:          1,
@@ -47,6 +46,12 @@
  * @param {string} color - the
  * @returns {number} - the digit corresponding to the color
  * example: 'black' => 0
+ * example: 'red' => 2
+ * example: 'violet' => 7
+ *
+ * must copy the colorCodes object from above
+ * and put it inside this function so it is private
+ * then use the copied object like a lookup table
  */
 function getColorValue(color) {
   const colorCodes = {
@@ -68,7 +73,14 @@ function getColorValue(color) {
  * Returns the number of the multiplier
  * @param {string} color - the color of the multiplier bands
  * @returns {number} - the multiplier number
+ * example: 'black' => 1
  * example: 'brown' => 10
+ * example: 'red' => 100
+ * example: 'orange' => 1000
+ *
+ * must copy the multiplierCodes object from above
+ * and put it inside this function so it is private
+ * then use the copied object like a lookup table
  */
 function getMultiplierValue(color) {
   const multiplierCodes = {
@@ -100,6 +112,12 @@ function getMultiplierValue(color) {
  * The first color band is the tens digit, the second is the ones digit
  * The last color band is the multiplier
  *
+ * Be careful with the JavaScript floating point rounding problems.
+ *
+ * If the multiplier is 'gold' make sure the value is rounded down to 1 decimal point.
+ * If the multiplier is 'silver' make sure the value is rounded down to 2 decimal points.
+ *
+ *
  * example: { color1: 'brown', color2: 'red', multiplier: 'black' } => 12
  * example: { color1: 'green', color2: 'brown', multiplier: 'red' } => 5100
  * example: { color1: 'violet', color2: 'orange', multiplier: 'gold' } => 7.3
@@ -123,9 +141,20 @@ function getThreeBandValue(bands) {
  * @param {number} val - number representing the value of the resistor
  * @returns {string} - a string representation of the numeric value with metric notation
  * example: 0.260      => 0.26
+ * example: 2.60       => 2.6
+ * example: 26         => 26
+ * example: 260        => 260
  * example: 2600       => 2.6k  // k = 1 thousand
+ * example: 26000      => 26k
+ * example: 260000     => 260k
  * example: 2600000    => 2.6M // M = 1 million
+ * example: 26000000   => 26M
+ * example: 260000000  => 260M
  * example: 2600000000 => 2.6G // G = 1 billion
+ *
+ *  Hint: I found a solution from stackoverflow
+ * Be careful, if you copy older code make sure you replace var with
+ * either const or let
  *
  */
 function formatNumber(val) {
@@ -151,7 +180,15 @@ function formatNumber(val) {
  * @param {string} color - the color of the tolerance band to
  * @returns {string} - the tolerance value in percent using the ± symbol
  *
+ * Go to http://bit.ly/2NjS274 see what colors are used for the tolerance
+ * lookup table.
+ *
+ * must create a toleranceCodes object inside this function so it is private,
+ * then use the object like a lookup table
+ *
  * example: 'brown' => '±1%'
+ * example: 'red' => '±2%'
+ * example: 'green' => '±0.5%'
  */
 function getTolerance(color) {
   const toleranceCodes = {
@@ -185,6 +222,15 @@ function getTolerance(color) {
  * }
  *   => '12 Ohms ±1%'
  *
+ * example: {
+ *   color1: 'green',
+ *   color2: 'blue',
+ *   multiplier: 'red',
+ *   tolerance: 'grey'
+ * }
+ *   => 'Resistor value: 5.6k Ohms ±0.05%'
+ *
+ * must use functions in this file to build the string using a template literal
  */
 function getResistorOhms(bands) {
   const val = getThreeBandValue(bands);
